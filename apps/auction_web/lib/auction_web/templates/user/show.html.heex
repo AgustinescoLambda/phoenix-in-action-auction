@@ -1,0 +1,12 @@
+<h1> User information </h1>
+
+<dt> Usuario </dt>
+   <db> <%= @user.username %></db>
+<dt> Email </dt>
+   <db> <%= @user.email_address %></db>
+
+<h2> Recent bids </h2>
+<%= for user_bid <- @bids do %>
+   <p><strong> <%= formatted_datetime(user_bid.inserted_at) %> - </strong> <%= integer_to_dollar(user_bid.amount) %> <%= link(user_bid.item.title, to: Routes.item_path(@conn, :show, user_bid.item)) %></p>
+
+<% end %>
